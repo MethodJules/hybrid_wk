@@ -1,0 +1,9 @@
+hexagon:
+  version: 1.x
+  js:
+    js/d3.min.js: {}
+    js/hybride_ws_wissenskarte.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/drupalSettings

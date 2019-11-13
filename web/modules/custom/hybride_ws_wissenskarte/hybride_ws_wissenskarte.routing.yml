@@ -1,0 +1,23 @@
+hybride_ws_wissenkarte.wissenskarte:
+  path: '/hybride_ws/wissenskarte'
+  defaults:
+    _title: 'Hybride Wertschöpfung'
+    _controller: 'Drupal\hybride_ws_wissenskarte\Controller\HybrideWSWissenskarteController::showKnowledgeMap'
+  requirements:
+    _permission: 'access content'
+
+hybride_ws_wissenkarte.test:
+  path: '/hybride_ws/test'
+  defaults:
+    _title: 'Hybride Wertschöpfung'
+    _controller: 'Drupal\hybride_ws_wissenskarte\Controller\HybrideWSWissenskarteController::test'
+  requirements:
+    _permission: 'access content'
+
+hybride_ws_wissenkarte.models:
+  path: '/hybride_ws/models/{term_id}'
+  defaults:
+    _title: 'Hybride Wertschöpfung'
+    _controller: 'Drupal\hybride_ws_wissenskarte\Controller\HybrideWSWissenskarteController::display_projects'
+  requirements:
+    _permission: 'access content'
