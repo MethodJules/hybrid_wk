@@ -81,8 +81,8 @@ class HybrideWSWissenskarteController extends ControllerBase
 
 	$nodes = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties(['field_disziplinen' => $term_id]);
 	//dsm($nodes);
-        foreach($nodes as $node) {
-            $nids[] = $node->nid;
+        foreach($nodes as $nid => $node) {
+            $nids[] = $nid;
         }
 
         $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
