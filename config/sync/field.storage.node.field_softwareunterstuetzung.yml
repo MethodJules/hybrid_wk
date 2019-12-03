@@ -1,0 +1,19 @@
+uuid: 5ebeb688-d477-4232-bea7-eee6cde466dc
+langcode: de
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_softwareunterstuetzung
+field_name: field_softwareunterstuetzung
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

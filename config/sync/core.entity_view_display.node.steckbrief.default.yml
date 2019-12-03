@@ -1,0 +1,97 @@
+uuid: e72dfb21-5744-4d27-b034-51724ae60c99
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.node.steckbrief.body
+    - field.field.node.steckbrief.field_disziplinen
+    - field.field.node.steckbrief.field_einfuehrung
+    - field.field.node.steckbrief.field_entwicklerin
+    - field.field.node.steckbrief.field_entwicklungsjahr
+    - field.field.node.steckbrief.field_literaturhinweise
+    - field.field.node.steckbrief.field_regeln_und_konventionen
+    - field.field.node.steckbrief.field_softwareunterstuetzung
+    - field.field.node.steckbrief.field_symbole
+    - node.type.steckbrief
+  module:
+    - image
+    - text
+    - user
+id: node.steckbrief.default
+targetEntityType: node
+bundle: steckbrief
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_disziplinen:
+    weight: 110
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_einfuehrung:
+    weight: 107
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_entwicklerin:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_entwicklungsjahr:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_literaturhinweise:
+    weight: 109
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_regeln_und_konventionen:
+    weight: 108
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_softwareunterstuetzung:
+    weight: 106
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_symbole:
+    weight: 111
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true

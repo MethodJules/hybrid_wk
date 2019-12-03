@@ -1,0 +1,21 @@
+uuid: 98e42292-4e07-4707-a931-25af78aa1214
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_einfuehrung
+    - node.type.steckbrief
+  module:
+    - text
+id: node.steckbrief.field_einfuehrung
+field_name: field_einfuehrung
+entity_type: node
+bundle: steckbrief
+label: Einführung
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

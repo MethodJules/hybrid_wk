@@ -1,0 +1,25 @@
+uuid: 90cc4c9d-fd3f-47fc-a4d1-c9d5cc40c42d
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_color
+    - taxonomy.vocabulary.disziplinen
+  module:
+    - color_field
+id: taxonomy_term.disziplinen.field_color
+field_name: field_color
+entity_type: taxonomy_term
+bundle: disziplinen
+label: Farbe
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    color: '#e3e3e3'
+    opacity: null
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

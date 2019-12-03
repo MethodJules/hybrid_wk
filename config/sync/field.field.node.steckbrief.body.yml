@@ -1,0 +1,22 @@
+uuid: 553452e1-64a8-400c-8daa-32e4edadd080
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.steckbrief
+  module:
+    - text
+id: node.steckbrief.body
+field_name: body
+entity_type: node
+bundle: steckbrief
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

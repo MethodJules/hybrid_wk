@@ -1,0 +1,29 @@
+uuid: 61147145-d9f9-431b-8453-7618787dd61d
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_disziplinen
+    - node.type.steckbrief
+    - taxonomy.vocabulary.disziplinen
+id: node.steckbrief.field_disziplinen
+field_name: field_disziplinen
+entity_type: node
+bundle: steckbrief
+label: Disziplinen
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      disziplinen: disziplinen
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

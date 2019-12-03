@@ -1,0 +1,28 @@
+uuid: 90e45a54-00ea-45b1-ac9c-a96aaf99a1a5
+langcode: de
+status: true
+dependencies:
+  module:
+    - hybride_ws_wissenskarte
+    - node
+  theme:
+    - bartik
+id: hybridewssvgblock
+theme: bartik
+region: sidebar_first
+weight: 0
+provider: null
+plugin: hybride_ws_wissenskarte_svg_block
+settings:
+  id: hybride_ws_wissenskarte_svg_block
+  label: 'Hybride WS SVG Block'
+  provider: hybride_ws_wissenskarte
+  label_display: visible
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      steckbrief: steckbrief
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

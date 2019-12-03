@@ -1,0 +1,33 @@
+uuid: 3be13de5-3fb3-4808-afd3-9a18569f1776
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.disziplinen.field_color
+    - taxonomy.vocabulary.disziplinen
+  module:
+    - color_field
+    - text
+id: taxonomy_term.disziplinen.default
+targetEntityType: taxonomy_term
+bundle: disziplinen
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_color:
+    type: color_field_formatter_text
+    weight: 1
+    region: content
+    label: inline
+    settings:
+      format: hex
+      opacity: '1'
+    third_party_settings: {  }
+hidden:
+  langcode: true

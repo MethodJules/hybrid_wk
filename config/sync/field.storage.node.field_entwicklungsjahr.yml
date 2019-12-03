@@ -1,0 +1,19 @@
+uuid: 0390c318-024f-4bd5-a190-e9e39ac2efe4
+langcode: de
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_entwicklungsjahr
+field_name: field_entwicklungsjahr
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,11 @@
+uuid: 22f0cccb-7421-47c8-8a09-bb93f38f2bb8
+langcode: de
+status: true
+dependencies:
+  config:
+    - node.type.steckbrief
+id: node.steckbrief
+target_entity_type_id: node
+target_bundle: steckbrief
+default_langcode: site_default
+language_alterable: false

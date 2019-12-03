@@ -1,0 +1,8 @@
+uuid: d16d4175-f383-49fe-89f1-a4030df1e497
+langcode: de
+status: true
+dependencies: {  }
+name: Disziplinen
+vid: disziplinen
+description: ''
+weight: 0

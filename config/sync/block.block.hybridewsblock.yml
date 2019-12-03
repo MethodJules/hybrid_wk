@@ -1,0 +1,20 @@
+uuid: 862dfb63-9ac7-4e15-b7fe-b50fa2c1d70c
+langcode: de
+status: true
+dependencies:
+  module:
+    - hybride_ws_wissenskarte
+  theme:
+    - bartik
+id: hybridewsblock
+theme: bartik
+region: sidebar_first
+weight: -6
+provider: null
+plugin: hybride_ws_wissenskarte_block
+settings:
+  id: hybride_ws_wissenskarte_block
+  label: Disziplinen
+  provider: hybride_ws_wissenskarte
+  label_display: visible
+visibility: {  }

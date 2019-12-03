@@ -1,0 +1,10 @@
+uuid: c5a10e85-7a91-471c-9c14-882789c53ed0
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: sapEi2YDGoI9yQIT_WgIV2vUdQ6DScH0V3fAyTadAL0
+id: admin
+label: Verwaltung
+description: 'Links für administrative Aufgaben'
+locked: true

@@ -1,0 +1,11 @@
+uuid: d1c6a828-53d2-4ae7-9a4c-349c12733315
+langcode: de
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.disziplinen
+id: taxonomy_term.disziplinen
+target_entity_type_id: taxonomy_term
+target_bundle: disziplinen
+default_langcode: site_default
+language_alterable: false

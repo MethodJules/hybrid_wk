@@ -1,0 +1,21 @@
+uuid: 8713464a-be6b-4353-9dda-d8c710d9ba79
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_entwicklerin
+    - node.type.steckbrief
+  module:
+    - text
+id: node.steckbrief.field_entwicklerin
+field_name: field_entwicklerin
+entity_type: node
+bundle: steckbrief
+label: EntwicklerIn
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

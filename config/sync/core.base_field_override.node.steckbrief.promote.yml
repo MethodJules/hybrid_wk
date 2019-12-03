@@ -1,0 +1,22 @@
+uuid: a922e6af-8f2e-4ef1-b7e0-88d06fec1c95
+langcode: de
+status: true
+dependencies:
+  config:
+    - node.type.steckbrief
+id: node.steckbrief.promote
+field_name: promote
+entity_type: node
+bundle: steckbrief
+label: 'Auf der Startseite anzeigen'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: An
+  off_label: Aus
+field_type: boolean

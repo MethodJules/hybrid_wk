@@ -1,0 +1,21 @@
+uuid: 220b3d63-a9a2-4d20-be0d-37af40c7a54b
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_entwicklungsjahr
+    - node.type.steckbrief
+  module:
+    - text
+id: node.steckbrief.field_entwicklungsjahr
+field_name: field_entwicklungsjahr
+entity_type: node
+bundle: steckbrief
+label: Entwicklungsjahr
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

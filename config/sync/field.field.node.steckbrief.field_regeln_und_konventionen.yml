@@ -1,0 +1,21 @@
+uuid: 8683d764-9b24-462a-bca3-08284a284b43
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_regeln_und_konventionen
+    - node.type.steckbrief
+  module:
+    - text
+id: node.steckbrief.field_regeln_und_konventionen
+field_name: field_regeln_und_konventionen
+entity_type: node
+bundle: steckbrief
+label: 'Beziehungen zu anderen Modellierungstechniken'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
