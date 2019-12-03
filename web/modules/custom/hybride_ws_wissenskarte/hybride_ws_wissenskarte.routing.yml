@@ -1,3 +1,11 @@
+hybride_ws_wissenkarte.wissenskarteOld:
+  path: '/hybride_ws/wissenskarteold'
+  defaults:
+    _title: 'Hybride Wertschöpfung'
+    _controller: 'Drupal\hybride_ws_wissenskarte\Controller\HybrideWSWissenskarteController::showKnowledgeMapOld'
+  requirements:
+    _permission: 'access content'
+
 hybride_ws_wissenkarte.wissenskarte:
   path: '/hybride_ws/wissenskarte'
   defaults:

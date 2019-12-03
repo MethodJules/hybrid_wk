@@ -1,5 +1,6 @@
 (function ($, Drupal, drupalSettings) {
     var initialized;
+    const hexJson = drupalSettings.hybride_ws_wissenskarte.hexJson;
     base_path = drupalSettings.baseUrl;
 
     function init() {
@@ -193,28 +194,167 @@
         }
     }
 
+  function initSvg() {
+    if(!initialized) {
+      initialized = true;
+
+      let hexjson = hexJson;
+
+      // Set the size and margins of the svg
+      var margin = {top: 0, right: 0, bottom: 0, left: 0},
+        width = 1050 - margin.left - margin.right,
+        height = 700 - margin.top - margin.bottom;
+
+      // Create the svg element
+      var svg = d3
+        .select("#visualization")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      // Render the hexes
+      var hexes = d3.renderHexJSON(hexjson, width, height);
+
+      // Bind the hexes to g elements of the svg and position them
+      var hexmap = svg
+        .selectAll("g")
+        .data(hexes)
+        .enter()
+        .append("g")
+        .attr("display", function(hex) {return (hex.type === 'method') ? 'none' : 'inline';})
+        .attr("class", function(hex) {
+          if (hex.type === 'discipline') {
+            return 'discipline' + hex.tid + ' ' + hex.type;
+          } else {
+            return 'group' + hex.groupid + ' ' + hex.type;
+          }})
+        .attr("transform", function(hex) {
+          return "translate(" + hex.x + "," + hex.y + ")";});
+
+      // Draw the polygons around each hex's center
+      hexmap
+        .append("polygon")
+        .attr("points", function(hex) {return hex.points;})
+        .attr("stroke", "white")
+        .attr("stroke-width", "2")
+        .attr("class", "wrap")
+        .attr("fill", function(hex) {
+          if (hex.type === 'discipline') {
+            return "#e3e3e3"
+          } else {
+            return hex.color;
+          }})
+        .on("click", function(hex) {handleClick(hex)});
 
 
-    function handleClick(term_id) {
-        console.log(term_id);
+      // Add the hex codes as labels
+      hexmap
+        .append("text")
+        .append("tspan")
+        .attr("text-anchor", "middle")
+        .attr("class", "wrap")
+        .text(function(hex) {return hex.name;});
 
-        $.ajax({
-            url: base_path + '/hybride_ws/models/' + term_id,
-            cache: false,
-            success: function (data) {
-                methods_display(data);
-            }
-        });
+
+      d3.select("svg").transition()
+        .duration(0)
+        .attr("transform", "translate(-100 -100) scale(2)");
+
+      d3.selectAll("svg text").transition()
+        .duration(0)
+        .attr("transform", "scale(0.6)");
 
     }
+  }
 
-    function methods_display(data) {
-        //alert(data);
-        $('#block-hybridewsblock').html('<h2>Methoden in dieser Phase</h2>' + data);
-    }
-    Drupal.behaviors.hybride_ws_wissenskarte = {
-        attach: function (context, settings) {
-            init();
+  // Handles click events of different hex types.
+  function handleClick(hex) {
+
+    // If you click on a discipline hex, show/hide associated method hexes.
+    if (hex.type === 'discipline') {
+      if ($('.group' + hex.tid + ':visible').length === 0) {
+        zoomOut();
+        $('.discipline' + hex.tid + ' polygon').attr('fill', hex.color);
+      } else {
+        $('.discipline' + hex.tid + ' polygon').attr('fill', '#e3e3e3');
+      }
+      $('.group' + hex.tid).fadeToggle(200,
+        function() {if ($('.method:visible').length === 0) {
+          $('.discipline' + hex.tid + ' polygon').attr('fill', '#e3e3e3');
+          zoomIn();
         }
+
+        d3.selectAll('text tspan').each(wrap)
+      });
+
+      // The 'Hybrid Smart' center hex shows/hides all methods hexes on click.
+    } else if (hex.type === 'center') {
+
+      // no method hexes are visible => show them all and zoom out
+      if ($('.method:visible').length === 0) {
+        $('.method').fadeIn(1000);
+        d3.selectAll('text tspan').each(wrap);
+        zoomOut();
+        d3.selectAll('.discipline polygon').attr('fill',function(hex) {
+          return hex.color;
+        })
+
+        // at least one method hex is visible => hide them all and zoom in
+      } else {
+        $('.method').fadeOut(200);
+        zoomIn();
+        d3.selectAll('.discipline polygon').attr('fill','#e3e3e3');
+      }
+
+      // if you click a method hex open the associated method page
+    } else if (hex.type === 'method') {
+      window.location.assign(hex.url);
     }
+  }
+
+  // Zooms out to fit the whole svg with all method hexes.
+  function zoomOut() {
+    d3.select("svg").transition()
+      .duration(750)
+      .attr("transform", "scale(1)");
+    d3.selectAll("svg text").transition()
+      .duration(750)
+      .attr("transform", "scale(0.6)");
+  }
+
+  // Zooms in on the 'Smart Hybrid' and discipline hexes
+  function zoomIn() {
+    d3.select("svg").transition()
+      .duration(750)
+      .attr("transform", "translate(-100 -100) scale(2)");
+    d3.selectAll("svg text").transition()
+      .duration(750)
+      .attr("transform", "scale(0.5)");
+  }
+
+  // Shortens text to fit inside the hex
+  function wrap() {
+    var self = d3.select(this),
+      textLength = self.node().getComputedTextLength(),
+      text = self.text();
+    while (textLength > (100 *10/6 - 2 * 0) && text.length > 0) {
+      text = text.slice(0, -1);
+      self.text(text + '...');
+      textLength = self.node().getComputedTextLength();
+    }
+  }
+
+  function methods_display(data) {
+    //alert(data);
+    $('#block-hybridewsblock').html('<h2>Methoden in dieser Phase</h2>' + data);
+  }
+
+  Drupal.behaviors.hybride_ws_wissenskarte = {
+    attach: function (context, settings) {
+      //init();
+      initSvg();
+    }
+  }
 }(jQuery, Drupal, drupalSettings));
