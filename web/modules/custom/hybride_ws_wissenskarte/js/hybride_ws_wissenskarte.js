@@ -227,7 +227,7 @@
         .attr("class", function(hex) {
           if (hex.type === 'discipline') {
             return 'discipline' + hex.tid + ' ' + hex.type;
-          } else {
+          } else if (hex.type === 'method') {
             return 'group' + hex.groupid + ' ' + hex.type;
           }})
         .attr("transform", function(hex) {
@@ -274,18 +274,19 @@
 
     // If you click on a discipline hex, show/hide associated method hexes.
     if (hex.type === 'discipline') {
-      if ($('.group' + hex.tid + ':visible').length === 0) {
+      if ($('.group' + hex.tid + '.visible').length === 0) {
+        $('.group' + hex.tid).toggleClass('visible');
         zoomOut();
         $('.discipline' + hex.tid + ' polygon').attr('fill', hex.color);
       } else {
         $('.discipline' + hex.tid + ' polygon').attr('fill', '#e3e3e3');
+        $('.group' + hex.tid).toggleClass('visible');
       }
       $('.group' + hex.tid).fadeToggle(200,
-        function() {if ($('.method:visible').length === 0) {
+        function() {if ($('.method.visible').length === 0) {
           $('.discipline' + hex.tid + ' polygon').attr('fill', '#e3e3e3');
           zoomIn();
         }
-
         d3.selectAll('text tspan').each(wrap)
       });
 
@@ -293,8 +294,9 @@
     } else if (hex.type === 'center') {
 
       // no method hexes are visible => show them all and zoom out
-      if ($('.method:visible').length === 0) {
+      if ($('.method.visible').length === 0) {
         $('.method').fadeIn(1000);
+        $('.method').addClass('visible');
         d3.selectAll('text tspan').each(wrap);
         zoomOut();
         d3.selectAll('.discipline polygon').attr('fill',function(hex) {
@@ -304,6 +306,7 @@
         // at least one method hex is visible => hide them all and zoom in
       } else {
         $('.method').fadeOut(200);
+        $('.method').removeClass('visible');
         zoomIn();
         d3.selectAll('.discipline polygon').attr('fill','#e3e3e3');
       }
